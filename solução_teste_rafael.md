@@ -6,7 +6,7 @@ Automação da Infraestrutura:
 Utilize uma ferramenta de gerenciamento de infraestrutura como código (IaC), como Terraform, para provisionar os hosts necessários na nuvem ou em um ambiente local.
 Exemplo de código Terraform (main.tf):
 
-///bash
+````bash
 provider "aws" {
   region = "us-east-1"  # Altere conforme sua região
 }
@@ -16,7 +16,7 @@ resource "aws_instance" "api_server" {
   instance_type = "t2.micro"               # Tipo de instância adequado
   # Configurações adicionais, como VPC, subnets, security groups, etc.
 }
-///
+````
 
 Configure as credenciais de acesso à AWS ou à sua infraestrutura preferida para o Terraform.
 Automação de Setup e Configuração:
@@ -24,7 +24,7 @@ Automação de Setup e Configuração:
 Utilize ferramentas de automação de configuração, como Ansible, para configurar os hosts provisionados.
 Exemplo de playbook Ansible (deploy.yaml):
 
-///bash
+````bash
 - hosts: all
   become: yes
   tasks:
@@ -50,7 +50,7 @@ Exemplo de playbook Ansible (deploy.yaml):
       command: gunicorn --log-level debug api:app
       args:
         chdir: /opt/app
-///
+````
 
 Execute o playbook Ansible para configurar os hosts automaticamente.
 Pipeline de Deploy Automatizado:
@@ -58,7 +58,7 @@ Pipeline de Deploy Automatizado:
 Utilize uma ferramenta de CI/CD, como Jenkins, GitLab CI/CD, ou GitHub Actions, para criar um pipeline de deploy automatizado.
 Exemplo de pipeline GitLab CI (.gitlab-ci.yml):
 
-///bash
+````bash
 stages:
   - deploy
 
@@ -68,7 +68,7 @@ deploy:
     - ansible-playbook deploy.yaml
   only:
     - master
-///
+````
 
 Configure o pipeline para acionar automaticamente quando houver uma alteração no repositório da aplicação.
 Monitoramento dos Serviços e Métricas da Aplicação:
@@ -76,7 +76,7 @@ Monitoramento dos Serviços e Métricas da Aplicação:
 Utilize ferramentas de monitoramento, como Prometheus e Grafana, para monitorar os serviços e métricas da aplicação.
 Exemplo de configuração do Prometheus (prometheus.yml):
 
-///bash
+````bash
 global:
   scrape_interval: 15s
 
@@ -84,7 +84,7 @@ scrape_configs:
   - job_name: 'api_server'
     static_configs:
       - targets: ['api_server_ip:8000']
-///
+````
 
 Configure o Grafana para visualizar as métricas coletadas pelo Prometheus e criar dashboards informativos.
 
